@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Home {
     Person user;
-    Database db = new Database();
+    DBOperation db = new DBOperation();
     Home(String email){
         user = db.getPerson(email);
     }
@@ -43,7 +43,7 @@ public class Home {
 
 
     public void display() {
-        Database db = new Database();
+        DBOperation db = new DBOperation();
         System.out.println("Rno\tName\tAge\t\tLocation\tJob\t\tSalary\t\tEducation");
         System.out.println("--------------------------------------------------------");
         for (int i = 0; i < db.persons.size(); i++) {
