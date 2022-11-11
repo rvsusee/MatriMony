@@ -68,7 +68,7 @@ public class Main {
         System.out.print("Enter Work Location:");
         String workLoc = sc.nextLine();
 
-        if (DBOperation.createAccount(new Person(name,age,gender,mobNo,email,fName,mName,homeLoc,jobType,salary,workLoc,edu),email,password)){
+        if (DBOperationSSSS.createAccount(new Person(name,age,gender,mobNo,email,fName,mName,homeLoc,jobType,salary,workLoc,edu),email,password)){
             System.out.println("-------------Account Created Successfully-------------");
         }else{
             System.out.println("Something went Wrong Please try again");
@@ -83,7 +83,7 @@ public class Main {
             String username = sc.next();
             System.out.print("Password:");
             String password = sc.next();
-            DBOperation.loginCheck(username,password);
+            DBOperationSSSS.loginCheck(username,password);
         }
     }
 }

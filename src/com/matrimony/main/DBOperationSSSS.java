@@ -3,7 +3,7 @@ package com.matrimony.main;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class DBOperation {
+public class DBOperationSSSS {
     static HashMap<String,String> users = new HashMap<>();
     static ArrayList<Person> persons = new ArrayList<>();
 

@@ -1,6 +1,8 @@
 package com.matrimony.main;
 
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -31,7 +33,7 @@ public class DataBase {
 		}
 	}
 
-	void uploadData(User user, UserDetails details) {
+	void addNewUser(User user, UserDetails details) {
 		String sql = "INSERT INTO Users (username, password, fullname, email) VALUES (?, ?, ?, ?)";
 
 		try {
@@ -51,8 +53,45 @@ public class DataBase {
 		}
 	}
 
-	void updateData() {
-
+	int signIn(String username, String password) {
+		
+		
+		
+		
+		
+		
+		return 1;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	List<UserDetails> getPersonDetails() {
+		List<UserDetails> persons = new ArrayList<>();
 
+		return null;
+	}
+	
+	UserDetails getPersonDetails(int id) {
+// 		get single user details
+		return null;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	void updateData() {
+//		add in future
+	}	
 }
