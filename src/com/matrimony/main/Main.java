@@ -78,7 +78,6 @@ public class Main {
 
     private void signIn() {
         while (true) {
-
             System.out.print("Email :");
             String username = sc.next();
             System.out.print("Password:");

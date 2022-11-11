@@ -6,6 +6,7 @@ import java.util.List;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DataBase {
@@ -17,8 +18,9 @@ public class DataBase {
 
 	private Connection conn;
 	private Statement stmt;
-	private PreparedStatement statement;
-	private String Query;
+	private PreparedStatement prepstmt;
+	private String query;
+	private ResultSet resultSet;
 
 	DataBase() {
 		try {
@@ -26,7 +28,8 @@ public class DataBase {
 			stmt = conn.createStatement();
 
 		} catch (SQLException e) {
-			System.out.println("Unable to Connect Database!");
+			System.err.println("Unable to reach DataBase...\n Check Internet Connection! and try later!");
+			System.exit(1);
 			System.out.println(e);
 			e.printStackTrace();
 			System.exit(0);
@@ -34,16 +37,16 @@ public class DataBase {
 	}
 
 	void addNewUser(User user, UserDetails details) {
-		String sql = "INSERT INTO Users (username, password, fullname, email) VALUES (?, ?, ?, ?)";
+		query = "INSERT INTO Users (username, password, fullname, email) VALUES (?, ?, ?, ?)";
 
 		try {
-			statement = conn.prepareStatement(sql);
-			statement.setString(1, "bill");
-			statement.setString(2, "secretpass");
-			statement.setString(3, "Bill Gates");
-			statement.setString(4, "bill.gates@microsoft.com");
+			prepstmt = conn.prepareStatement(query);
+			prepstmt.setString(1, "bill");
+			prepstmt.setString(2, "secretpass");
+			prepstmt.setString(3, "Bill Gates");
+			prepstmt.setString(4, "bill.gates@microsoft.com");
 
-			int rowsInserted = statement.executeUpdate();
+			int rowsInserted = prepstmt.executeUpdate();
 			if (rowsInserted > 0) {
 				System.out.println("A new user was inserted successfully!");
 			}
@@ -54,44 +57,49 @@ public class DataBase {
 	}
 
 	int signIn(String username, String password) {
-		
-		
-		
-		
-		
-		
-		return 1;
+		query = "SELECT * FROM SUSEENDHIRAN_USERS WHERE username = ? and password = ?;";
+		try {
+			prepstmt = conn.prepareStatement(query);
+			prepstmt.setString(1, username);
+			prepstmt.setString(1, password);
+
+			System.out.println(query);
+			resultSet = prepstmt.executeQuery();
+			if (resultSet.next()) {
+				User user = new User(111,"dasf","fdsfs");
+				
+				if (user.getUsername().equals(username)) {
+					if (user.getPassword().equals(password)) {
+//						new HomePage(resultSet.getString(0));
+						new HomePage(user.getUserID(),user.getUsername());
+					}else {
+						return 2;
+					}
+				}else {
+					return 1;
+				}
+			}else {
+				throw new Exception();
+			}
+			return 3;
+		} catch (Exception e) {
+			System.out.println("Database Error");
+			return 3;
+		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	List<UserDetails> getPersonDetails() {
 		List<UserDetails> persons = new ArrayList<>();
 
 		return null;
 	}
-	
+
 	UserDetails getPersonDetails(int id) {
 // 		get single user details
 		return null;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	void updateData() {
 //		add in future
-	}	
+	}
 }
